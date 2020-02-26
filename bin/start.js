@@ -126,7 +126,6 @@ if (__DEVELOPMENT__) {
   const { publicPath } = clientConfigDev.output;
 
   const serverOptions = {
-    stats: { colors: true },
     publicPath
   };
 
