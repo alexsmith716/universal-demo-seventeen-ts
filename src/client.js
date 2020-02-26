@@ -13,6 +13,7 @@ import asyncGetPromises from './utils/asyncGetPromises';
 import { Provider } from 'react-redux';
 
 import { RouterTrigger } from './components';
+import { RouterTriggerTEST } from './components';
 
 import { ScrollToTop } from './components';
 import { routes } from './routes';
@@ -68,6 +69,10 @@ const providers = {
     persistConfig
   });
 
+  const triggerHooksTEST = (_routes, pathname, store) => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooksTEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+  };
+
   const triggerHooks = async (_routes, pathname, store) => {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 1111 ######: ', store.getState());
     spinnerContainer.classList.add('spinner-border');
@@ -86,6 +91,14 @@ const providers = {
     spinnerContainer.classList.remove('spinner-border');
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
   };
+
+  // <RouterTriggerTEST triggerPropTEST={pathname => triggerHooks(_routes, pathname, store)} >
+  //   {renderRoutes(_routes)}
+  // </RouterTriggerTEST>
+
+  // <RouterTrigger triggerProp={pathname => triggerHooks(_routes, pathname, store)}>
+  //   {renderRoutes(_routes)}
+  // </RouterTrigger>
 
   const hydrate = _routes => {
     const element = (
