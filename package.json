@@ -45,7 +45,7 @@
     "lighthouse": "^5.6.0",
     "localforage": "^1.7.3",
     "lru-memoize": "^1.1.0",
-    "mongoose": "^5.8.11",
+    "mongoose": "^5.9.2",
     "multireducer": "^3.1.2",
     "nedb": "^1.8.0",
     "popper.js": "^1.16.1",
@@ -65,7 +65,7 @@
     "redux-immutable": "^4.0.0",
     "redux-persist": "^6.0.0",
     "redux-persist-cookie-storage": "^1.0.0",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.0.0",
     "webpack-flush-chunks": "^2.0.3"
   },
   "devDependencies": {
