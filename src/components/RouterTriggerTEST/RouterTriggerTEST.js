@@ -5,11 +5,11 @@ import { hot } from 'react-hot-loader/root';
 
 const RouterTriggerTEST = (props) => {
 
-  const { triggerPropTEST } = props;
+  const { triggerProp } = props;
   const { children } = props;
   const location = useLocation();
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > props: ', props);
-  // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > PROPS > triggerPropTEST: ', triggerPropTEST);
+  // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > PROPS > triggerProp: ', triggerProp);
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > PROPS > children: ', children);
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > PROPS > useLocation: ', location);
 
@@ -27,7 +27,7 @@ const RouterTriggerTEST = (props) => {
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > prevLocationState: ', v);
 
   if (navigated) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated TRUE: ', navigated);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated !!TRUE!!: ', navigated);
     setLocationState(location);
     setPrevLocationState(locationState || location);
     setNeedTrigger(true);
@@ -52,10 +52,10 @@ const RouterTriggerTEST = (props) => {
       // componentDidUpdate
       if (!needTrigger) {
         console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > needTrigger > FALSE: ', needTrigger);
-        triggerPropTEST(location.pathname)
-          .catch(err => console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerPropTEST > ERROR:', err))
+        triggerProp(location.pathname)
+          .catch(err => console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerProp > ERROR:', err))
           .then(() => {
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerPropTEST > SUCCESS');
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerProp > SUCCESS');
             // clear previousLocation so the next screen renders
             setPrevLocationState(null);
           });
