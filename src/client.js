@@ -111,9 +111,9 @@ const providers = {
               <ScrollToTop />
               {/* ------------- */}
               {/* ------------------------------------------------- */}
-              <RouterTrigger triggerProp={pathname => triggerHooks(_routes, pathname, store)} >
+              <RouterTriggerTEST triggerProp={pathname => triggerHooks(_routes, pathname, store)} >
                 {renderRoutes(_routes)}
-              </RouterTrigger>
+              </RouterTriggerTEST>
               {/* ------------- */}
             </Router>
             {/* ---------------------------------------------------------------- */}
