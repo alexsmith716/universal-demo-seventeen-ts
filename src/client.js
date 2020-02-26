@@ -92,9 +92,7 @@ const providers = {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
   };
 
-  // <RouterTriggerTEST triggerPropTEST={pathname => triggerHooks(_routes, pathname, store)} >
-  //   {renderRoutes(_routes)}
-  // </RouterTriggerTEST>
+  // <RouterTriggerTEST triggerProp={pathname => triggerHooks(_routes, pathname, store)} >
 
   // <RouterTrigger triggerProp={pathname => triggerHooks(_routes, pathname, store)}>
   //   {renderRoutes(_routes)}

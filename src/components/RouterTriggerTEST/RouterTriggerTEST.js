@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation } from 'react-router';
 import { hot } from 'react-hot-loader/root';
