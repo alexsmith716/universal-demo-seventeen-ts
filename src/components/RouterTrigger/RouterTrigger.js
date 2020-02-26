@@ -43,7 +43,7 @@ class RouterTrigger extends Component {
     // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > previousLocation: ', v);
 
     if (navigated) {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > navigated TRUE: ', navigated);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > getDerivedStateFromProps() > navigated !TRUE!: ', navigated);
       return {
         needTrigger: true,
         location: props.location,
