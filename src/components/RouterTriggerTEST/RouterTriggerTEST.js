@@ -1,7 +1,16 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Route, useLocation } from 'react-router';
 import { hot } from 'react-hot-loader/root';
+
+// Hooks split the code based on what it is doing rather than a lifecycle method name. 
+// React will apply every effect used by the component, in the order they were specified.
+
+// Run an effect and clean it up only once (on mount and unmount):
+//   * pass empty '[]' array as second 'useEffect' argument
+//   * tells React the effect doesn't depend on props or state, so it never needs to re-run
+//   * the props and state inside effect will always have their initial values
+//   * helps avoid re-running effects too often
 
 const RouterTriggerTEST = (props) => {
 
@@ -26,10 +35,12 @@ const RouterTriggerTEST = (props) => {
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated: ', navigated);
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > prevLocationState: ', v);
 
+  // detect a 'navigation'
   if (navigated) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated !!TRUE!!: ', navigated);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated TRUE: ', navigated);
     setLocationState(location);
     setPrevLocationState(locationState || location);
+    // initiate an effect on 'needTrigger'
     setNeedTrigger(true);
   }
 
@@ -40,22 +51,27 @@ const RouterTriggerTEST = (props) => {
 
   // isolate effects on 'needTrigger'
   // evaluate for state change and do somethig (callback)
+  // no 'needTrigger' change, skip the effect
+
+  // only re-run the effect if 'needTrigger' changes
+  // React will compare [needTrigger] from the previous render and [needTrigger] from the next render
+  // if all items in the array are the same (false === false), React skisp the effect
+  // that's an optimization
   useEffect(
     () => {
       // componentDidMount
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > navigated: ', navigated);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidMount) > navigated: ', navigated);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidUpdate) > needTrigger ???: ', needTrigger);
       // componentDidUpdate
       if (needTrigger) {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > needTrigger > TRUE: ', needTrigger);
         setNeedTrigger(false);
       }
       // componentDidUpdate
       if (!needTrigger) {
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > needTrigger > FALSE: ', needTrigger);
         triggerProp(location.pathname)
-          .catch(err => console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerProp > ERROR:', err))
+          .catch(err => console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidUpdate) > triggerProp > ERROR:', err))
           .then(() => {
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > triggerProp > SUCCESS');
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidUpdate) > triggerProp > SUCCESS');
             // clear previousLocation so the next screen renders
             setPrevLocationState(null);
           });
@@ -64,7 +80,7 @@ const RouterTriggerTEST = (props) => {
       return () => {
         // componentWillUnmount
         // some effects might require cleanup
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > cleanup phase');
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentWillUnmount) > cleanup phase');
       };
     },
     [needTrigger]

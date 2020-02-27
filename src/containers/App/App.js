@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
@@ -51,14 +51,6 @@ import config from '../../../config/config';
 //   dispatch: [Function (anonymous)]
 // }
 
-// https://reacttraining.com/blog/useEffect-is-not-the-new-componentDidMount/
-// https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array/
-// https://reacttraining.com/blog/reach-react-router-future/
-
-// https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Route.md
-
-// go over 'RouterTrigger'
-
 const App = (props) => {
 
   console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > props: ', props);
@@ -68,23 +60,6 @@ const App = (props) => {
   const isBot = useSelector(state => state.device.isBot);
 
   const styles = require('./styles/App.scss');
-
-  // const location = useLocation();
-
-  const [prevPropsLocation, setPrevPropsLocation] = useState(props.location);
-
-  if (props.location.pathname !== prevPropsLocation.pathname) {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > Router Location Changed?: ', props.location.pathname !== prevPropsLocation.pathname);
-  }
-
-  useEffect(() => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > props.location.pathname: ', props.location.pathname);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > useLocation() > prevPropsLocation.pathname: ', prevPropsLocation.pathname);
-    if (props.location.pathname !== prevPropsLocation.pathname) {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > useEffect() > setPrevPropsLocation(props.location) <<<<<<<<<<<<<<<<<<<<<<');
-      setPrevPropsLocation(props.location);
-    }
-  });
 
   return (
 
