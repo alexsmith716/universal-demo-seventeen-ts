@@ -58,12 +58,12 @@ class RouterTrigger extends Component {
   // ==================================================================
 
   componentDidMount() {
-    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidMount()');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidMount()');
     this.mounted = true;
     this.triggerSafeSetState();
   }
   componentDidUpdate() {
-    //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidUpdate()');
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > componentDidUpdate()');
     this.triggerSafeSetState();
   }
   componentWillUnmount() {
@@ -84,7 +84,9 @@ class RouterTrigger extends Component {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > shouldComponentUpdate() > ???????????: ', pl);
     // this a performance update, 'RouterTrigger' MAIN state is router LOCATION
     // do not re-render if router LOCATION has not changed (state HAS changed, but choose NOT to re-render)
-    return nextState.previousLocation !== previousLocation;
+    // prevent 'componentDidUpdate()' when routes match
+    // return nextState.previousLocation !== previousLocation;
+    return true;
   }
 
   // 'setState()' does not always immediately update the component. 
@@ -100,20 +102,19 @@ class RouterTrigger extends Component {
     }
   }
 
-  // this is "useEffect()"
   triggerSafeSetState = () => {
     const { triggerProp, location } = this.props;
     const { needTrigger } = this.state;
 
     if (needTrigger) {
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > needTrigger 2222: ', needTrigger);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > triggerSafeSetState > needTrigger: ', needTrigger);
 
       this.safeSetState({ needTrigger: false }, () => {
         triggerProp(location.pathname)
           .catch(err => console.log('Failure in RouterTrigger:', err))
           .then(() => {
             // clear previousLocation so the next screen renders (but not before 'shouldComponentUpdate()' evaluates)
-            //console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > useEffect() > triggerProp > THEN() > previousLocation: ', this.state.previousLocation);
+            // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTrigger > useEffect() > triggerProp > THEN() > previousLocation: ', this.state.previousLocation);
             this.safeSetState({ previousLocation: null });
           });
       });

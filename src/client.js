@@ -69,10 +69,6 @@ const providers = {
     persistConfig
   });
 
-  const triggerHooksTEST = (_routes, pathname, store) => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooksTEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
-  };
-
   const triggerHooks = async (_routes, pathname, store) => {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 1111 ######: ', store.getState());
     spinnerContainer.classList.add('spinner-border');
@@ -92,8 +88,7 @@ const providers = {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> CLIENT > triggerHooks > store.getState() 2222 ######: ', store.getState());
   };
 
-  // <RouterTriggerTEST triggerProp={pathname => triggerHooks(_routes, pathname, store)} >
-
+  // <RouterTriggerTEST>
   // <RouterTrigger triggerProp={pathname => triggerHooks(_routes, pathname, store)}>
   //   {renderRoutes(_routes)}
   // </RouterTrigger>
