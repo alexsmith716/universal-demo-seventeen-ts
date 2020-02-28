@@ -23,9 +23,9 @@ const RouterTriggerTEST = (props) => {
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > PROPS > useLocation: ', location);
 
   const [needTrigger, setNeedTrigger] = useState(false);
-  // const [prevLocationState, setPrevLocationState] = useState(props.location);
+  // const [prevLocationState, setPreviousLocationState] = useState(props.location);
   const [locationState, setLocationState] = useState(null);
-  const [prevLocationState, setPrevLocationState] = useState(null);
+  const [prevLocationState, setPreviousLocationState] = useState(null);
   // const {location: { pathname, search }} = props;
 
   const navigated = !locationState || `${location.pathname}${location.search}` !== `${locationState.pathname}${locationState.search}`;
@@ -39,7 +39,7 @@ const RouterTriggerTEST = (props) => {
   if (navigated) {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated TRUE: ', navigated);
     setLocationState(location);
-    setPrevLocationState(locationState || location);
+    setPreviousLocationState(locationState || location);
     // initiate an effect on 'needTrigger'
     setNeedTrigger(true);
   }
@@ -55,17 +55,19 @@ const RouterTriggerTEST = (props) => {
 
   // only re-run the effect if 'needTrigger' changes
   // React will compare [needTrigger] from the previous render and [needTrigger] from the next render
-  // if all items in the array are the same (false === false), React skisp the effect
+  // if all items in the array are the same (false === false), React skips the effect
   // that's an optimization
   useEffect(
     () => {
       // componentDidMount
       console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidMount) > navigated: ', navigated);
       console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidUpdate) > needTrigger ???: ', needTrigger);
+
       // componentDidUpdate
       if (needTrigger) {
         setNeedTrigger(false);
       }
+
       // componentDidUpdate
       if (!needTrigger) {
         triggerProp(location.pathname)
@@ -73,12 +75,12 @@ const RouterTriggerTEST = (props) => {
           .then(() => {
             console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentDidUpdate) > triggerProp > SUCCESS');
             // clear previousLocation so the next screen renders
-            setPrevLocationState(null);
+            setPreviousLocationState(null);
           });
       }
 
+      // componentWillUnmount
       return () => {
-        // componentWillUnmount
         // some effects might require cleanup
         console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentWillUnmount) > cleanup phase');
       };

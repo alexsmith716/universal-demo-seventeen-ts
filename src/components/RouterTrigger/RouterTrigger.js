@@ -85,8 +85,7 @@ class RouterTrigger extends Component {
     // this a performance update, 'RouterTrigger' MAIN state is router LOCATION
     // do not re-render if router LOCATION has not changed (state HAS changed, but choose NOT to re-render)
     // prevent 'componentDidUpdate()' when routes match
-    // return nextState.previousLocation !== previousLocation;
-    return true;
+    return nextState.previousLocation !== previousLocation;
   }
 
   // 'setState()' does not always immediately update the component. 
