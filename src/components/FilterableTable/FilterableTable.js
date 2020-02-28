@@ -9,8 +9,8 @@ import Tables from './components/Tables';
 import DropdownSelect from '../DropdownSelect/DropdownSelect';
 import * as filterableTableActions from '../../redux/modules/filterableTable';
 
-import enumerateObjectValues from '../../utils/enumerateObjectValues';
-import { promiseGenerator } from '../../utils/promiseGenerator';
+// import enumerateObjectValues from '../../utils/enumerateObjectValues';
+// import { promiseGenerator } from '../../utils/promiseGenerator';
 
 @connect(
   (state, { multireducerKey: key  }) => ({

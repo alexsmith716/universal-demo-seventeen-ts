@@ -65,6 +65,7 @@
     "redux-immutable": "^4.0.0",
     "redux-persist": "^6.0.0",
     "redux-persist-cookie-storage": "^1.0.0",
+    "reselect": "^4.0.0",
     "serialize-javascript": "^3.0.0",
     "webpack-flush-chunks": "^2.0.3"
   },

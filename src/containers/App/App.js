@@ -12,44 +12,8 @@ import { FontsModal } from '../../components';
 
 import config from '../../../config/config';
 
-// >>>>>>>>>>>>>>>>>>>>>>>> App > props:  {
-//   history: {
-//     createHref: [Function: createHref],
-//     action: 'POP',
-//     location: { pathname: '/aboutfour', search: '', hash: '', state: undefined },
-//     push: [Function (anonymous)],
-//     replace: [Function (anonymous)],
-//     go: [Function (anonymous)],
-//     goBack: [Function (anonymous)],
-//     goForward: [Function (anonymous)],
-//     listen: [Function (anonymous)],
-//     block: [Function (anonymous)]
-//   },
-//   location: { pathname: '/aboutfour', search: '', hash: '', state: undefined, key: 'ac3df4' },
-//   match: { path: '/', url: '/', params: {}, isExact: false },
-//   staticContext: {},
-//   route: {
-//     component: {
-//       '$$typeof': Symbol(react.memo),
-//       type: [Function: ConnectFunction],
-//       compare: null,
-//       WrappedComponent: [Function (anonymous)],
-//       displayName: 'Connect(Component)'
-//     },
-//     loadData: [AsyncFunction: loadData],
-//     routes: [
-//       [Object], [Object],
-//       [Object], [Object],
-//       [Object], [Object],
-//       [Object], [Object],
-//       [Object], [Object]
-//     ]
-//   },
-//   online: true,
-//   userAgent: 'desktop',
-//   isBot: false,
-//   dispatch: [Function (anonymous)]
-// }
+// memoizing selectors
+// https://github.com/reduxjs/reselect
 
 const App = (props) => {
 
@@ -58,6 +22,10 @@ const App = (props) => {
   const online = useSelector(state => state.online);
   const userAgent = useSelector(state => state.device.userAgent);
   const isBot = useSelector(state => state.device.isBot);
+
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > online    ????: ', online);
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > userAgent ????: ', userAgent);
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>> App > isBot     ????: ', isBot);
 
   const styles = require('./styles/App.scss');
 
@@ -134,9 +102,9 @@ const App = (props) => {
 
         <div className="d-flex justify-content-center">
           <div className="bg-color-ivory text-center m-2">
-            <div className="color-olive font-opensans-bold-webfont">{`'online' store state is ${props.online} !`}</div>
-            <div className="color-crimson font-philosopher-bold-webfont">{`device 'userAgent' store state is ${props.userAgent} !`}</div>
-            <div className="color-orangered font-norwester">{`device 'bot' store state is ${props.isBot} !`}</div>
+            <div className="color-olive font-opensans-bold-webfont">{`'online' store state is ${online} !`}</div>
+            <div className="color-crimson font-philosopher-bold-webfont">{`device 'userAgent' store state is ${userAgent} !`}</div>
+            <div className="color-orangered font-norwester">{`device 'bot' store state is ${isBot} !`}</div>
           </div>
         </div>
 
