@@ -57,6 +57,9 @@ const RouterTriggerTEST = (props) => {
   // React will compare [needTrigger] from the previous render and [needTrigger] from the next render
   // if all items in the array are the same (false === false), React skips the effect
   // that's an optimization
+
+  // Is it safe to omit functions from the list of dependencies?
+  // https://github.com/facebook/react/issues/14920
   useEffect(
     () => {
       // componentDidMount
@@ -85,7 +88,7 @@ const RouterTriggerTEST = (props) => {
         console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > useEffect() > (componentWillUnmount) > cleanup phase');
       };
     },
-    [needTrigger]
+    [needTrigger, location.pathname, navigated, triggerProp]
   );
 
   // ================================================================================
