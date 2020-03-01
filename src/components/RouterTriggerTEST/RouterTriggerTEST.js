@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+// import PropTypes from 'prop-types';
 import { Route, useLocation } from 'react-router';
 import { hot } from 'react-hot-loader/root';
 
@@ -30,7 +30,7 @@ const RouterTriggerTEST = (props) => {
 
   const navigated = !locationState || `${location.pathname}${location.search}` !== `${locationState.pathname}${locationState.search}`;
 
-  const v = locationState || location;
+  // const v = locationState || location;
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > locationState: ', locationState);
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > navigated: ', navigated);
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>> RouterTriggerTEST > getDerivedStateFromProps() > prevLocationState: ', v);
