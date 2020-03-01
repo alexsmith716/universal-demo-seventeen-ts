@@ -10,6 +10,8 @@ import { InfoBar } from '../../components';
 import { ReadmeModal } from '../../components';
 import { FontsModal } from '../../components';
 
+// import UseMemoTest from '../../components/widgets/hooks/UseMemoTest/UseMemoTest';
+
 import config from '../../../config/config';
 
 // memoizing selectors
@@ -97,6 +99,8 @@ const App = (props) => {
         <div className="bg-warning">
           {renderRoutes(props.route.routes)}
         </div>
+
+        {/* --------------- UseMemoTest ---------------- */}
 
         {/* ------------- Device State ----------- */}
 

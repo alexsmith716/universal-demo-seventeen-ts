@@ -17,7 +17,7 @@
     "clean": "rimraf build/dist build/server build/service-worker.js ./analyzers",
     "clean:dlls": "rimraf build/dlls  webpack/dlls",
     "prettier": "prettier-eslint --write --eslint-config-path .eslintrc.js './+(bin)/**/*.js'",
-    "lint": "eslint bin",
+    "lint": "eslint ./bin ./src/components/RouterTriggerTEST",
     "test": "jest src",
     "check-types-t": "tsc --traceResolution",
     "check-types-w": "tsc --watch",

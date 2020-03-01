@@ -25,6 +25,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-hooks',
     'import'
   ],
   rules: {
@@ -41,6 +42,8 @@ module.exports = {
     'import/no-duplicates': 2,
     'import/no-extraneous-dependencies': 0,
     //
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 2,
     'react/jsx-filename-extension': 0,
     'react/jsx-indent': [2, 'tab'],
     'react/jsx-indent-props': [2, 'tab'],
